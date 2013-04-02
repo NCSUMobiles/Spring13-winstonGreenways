@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ImageButton
+        android:id="@+id/home"
+        android:layout_width="75dp"
+        android:layout_height="50dp"
+        android:scaleType="fitXY"
+        android:layout_alignParentBottom="true"
+        
+        android:contentDescription="Button"
+        android:src="@drawable/home" />
+
+    <ImageButton
+        android:id="@+id/map"
+        android:layout_width="75dp"
+        android:layout_height="50dp"
+        android:scaleType="fitXY"
+        
+        android:layout_toRightOf="@+id/home"
+        android:contentDescription="Map"
+        android:layout_alignParentBottom="true" 
+        android:src="@drawable/map" />
+
+    <ImageButton
+        android:id="@+id/weather"
+        android:layout_width="75dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/map"
+        android:contentDescription="Weather"
+        android:scaleType="fitXY"
+        android:src="@drawable/weather" />
+    
+    <ImageButton
+        android:id="@+id/citilink"
+        android:layout_width="75dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/weather"
+        android:contentDescription="CitiLink"
+        android:scaleType="fitXY"
+        android:src="@drawable/citylink" />
+    
+
+</RelativeLayout>
