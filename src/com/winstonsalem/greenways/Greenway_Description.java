@@ -45,22 +45,22 @@ public class Greenway_Description extends Activity{
 		*/
 		//Put the following code for disabling window title after onCreate and before setContentView, else it won't work
 		setContentView(R.layout.description);
-		
+
 		Header header = (Header) findViewById(R.id.header);
 	    header.initHeader(this);
-	    
-		
+
+
 		greenwayHashMap = Greenway.greenways;
 
 		String str = this.getIntent().getStringExtra("str");
-		
+
 		TextView nameGreenWay = (TextView) findViewById(R.id.nameGreenWay);
 		nameGreenWay.setText(greenwayHashMap.get(str).getTitle()+ " at " + greenwayHashMap.get(str).getAccesspt());
-		
+
 		TextView nameAccessPoint = (TextView) findViewById(R.id.accessPointName);
 		System.out.println(nameAccessPoint);
 		//nameAccessPoint.setText();
-		
+
 		String[] l = greenwayHashMap.get(str).getLocation();
 		final double lattitudeValue = Double.parseDouble(l[1]); //converting string latitude value to double
 		final double longitudeValue=Double.parseDouble(l[0]); //converting string longitude value to double
@@ -94,7 +94,7 @@ public class Greenway_Description extends Activity{
 			}
 		}); 
 	}
-	
+
 	/*@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.activity_main, menu);

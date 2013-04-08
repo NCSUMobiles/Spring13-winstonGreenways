@@ -57,5 +57,3 @@ public class CityLink extends Activity {
 	}*/
 
 }
-
-

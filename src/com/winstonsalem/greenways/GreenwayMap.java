@@ -7,15 +7,19 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
+import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import com.winstonsalem.greenways.HelloItemizedOverlay;
-import com.winstonsalem.greenways.ParkingParse;
-import com.winstonsalem.greenways.R;
+import android.view.Gravity;
+import android.view.Menu;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.Toast;
+
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapController;
@@ -23,10 +27,6 @@ import com.google.android.maps.MapView;
 import com.google.android.maps.MyLocationOverlay;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
-
-import android.content.Context;
-import android.view.Menu;
-import android.widget.Toast;
 
 public class GreenwayMap extends MapActivity implements Serializable{
 	/**
@@ -46,7 +46,8 @@ public class GreenwayMap extends MapActivity implements Serializable{
 	String provider;
 	MyLocationOverlay myLocationOverlay;
 	private MapView mapView;
-
+	
+	/*
 	private final LocationListener locationListener = new LocationListener() {
 		public void onLocationChanged(Location location) {
 			updateWithNewLocation(location, 1);
@@ -60,6 +61,7 @@ public class GreenwayMap extends MapActivity implements Serializable{
 
 		public void onStatusChanged(String provider, int status, Bundle extras){ }
 	};
+	*/
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -68,19 +70,22 @@ public class GreenwayMap extends MapActivity implements Serializable{
 
 		Header header = (Header) findViewById(R.id.header);
 	    header.initHeader(this);
-	    
-	    
+
+
 		// showing MapView
 		mapView = (MapView) findViewById(R.id.mapView);
-
+		
 		mapView.setBuiltInZoomControls(true);
 		mapView.displayZoomControls(true);
+		
 		mc = mapView.getController();
 
 		myLocationOverlay = new MyLocationOverlay(this, mapView);
 		myLocationOverlay.enableMyLocation();
 		mapView.getOverlays().add(myLocationOverlay);
 
+		mapView.invalidate();
+		
 		displayAccesspt();
 
 		displayParkingArea();
@@ -88,25 +93,11 @@ public class GreenwayMap extends MapActivity implements Serializable{
 		displayGreenway();
 
 
-		LocationManager locationManager;
-		String context = Context.LOCATION_SERVICE;
-		locationManager = (LocationManager)getSystemService(context);
-
-		Criteria criteria = new Criteria();
-		criteria.setAccuracy(Criteria.ACCURACY_FINE);
-		criteria.setAltitudeRequired(false);
-		criteria.setBearingRequired(false);
-		criteria.setCostAllowed(true);
-		criteria.setPowerRequirement(Criteria.POWER_LOW);
-
-		provider = locationManager.getBestProvider(criteria, true);
-		Location location = locationManager.getLastKnownLocation(provider);
-		updateWithNewLocation(location, 0);
-		locationManager.requestLocationUpdates(provider, 2000, 10, locationListener);
+		updateWithNewLocation(FrontLine.curLocation, 0);
+		//locationManager.requestLocationUpdates(provider, 2000, 10, locationListener);
 	}
 
 
-	@SuppressWarnings("unused")
 	private void displayGreenway() {
 
 		ArrayList<String[]> line = new ArrayList<String[]>();
@@ -121,8 +112,6 @@ public class GreenwayMap extends MapActivity implements Serializable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		mapView.invalidate();
 
 		Iterator<String[]> itr = line.iterator();
 		String[] l = new String[3];
@@ -194,9 +183,6 @@ public class GreenwayMap extends MapActivity implements Serializable{
 			e.printStackTrace();
 		}
 
-
-		mapView.invalidate();
-
 		List<Overlay> mapOverlays = mapView.getOverlays();
 		Drawable drawable = this.getResources().getDrawable(R.drawable.parkingmarker);
 		ParkingItemizedOverlay itemizedoverlay = new ParkingItemizedOverlay(drawable, this);
@@ -220,19 +206,18 @@ public class GreenwayMap extends MapActivity implements Serializable{
 
 	private void displayAccesspt() {
 
-		AccessptParse parseXMLTask = new AccessptParse(this);
-		try {
-			Greenway.greenways = parseXMLTask.execute("accesspt").get();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if(Greenway.greenways == null){ // For calling parser just once
+			AccessptParse parseXMLTask = new AccessptParse(this);
+			try {
+				Greenway.greenways = parseXMLTask.execute("accesspt").get();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ExecutionException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-
-
-		mapView.invalidate();
 
 		List<Overlay> mapOverlays = mapView.getOverlays();
 		Drawable drawable = this.getResources().getDrawable(R.drawable.locationmarker);
@@ -260,13 +245,7 @@ public class GreenwayMap extends MapActivity implements Serializable{
 	public void updateWithNewLocation(Location location, int i) {
 
 		if (location != null) {
-			/*
-    		Toast.makeText(
-                        this,
-                        "Current location:\nLatitude: " + location.getLatitude()
-                                + "\n" + "Longitude: " + location.getLongitude(),
-                        Toast.LENGTH_LONG).show();
-			 */
+			
 			// Update the map location.
 			Double geoLat = location.getLatitude()*1E6;
 			Double geoLng = location.getLongitude()*1E6;

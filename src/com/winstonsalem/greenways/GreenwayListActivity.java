@@ -16,18 +16,15 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
 public class GreenwayListActivity extends ListActivity{
 	private ArrayList<HashMap<String,String>> list = 
 			new ArrayList<HashMap<String,String>>(); 
-	LocationManager locationManager;
+	
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -36,7 +33,7 @@ public class GreenwayListActivity extends ListActivity{
 		
 		Header header = (Header) findViewById(R.id.header);
 	    header.initHeader(this);
-	    
+
 		final ListView lv = getListView();
 		SimpleAdapter adapter = new SimpleAdapter(
 				this,
@@ -87,12 +84,8 @@ public class GreenwayListActivity extends ListActivity{
 			}
 		}
 
-		Location curLocation = getCurrentLocation();
-		/*
-		Location curLocation = new Location("dummy");
-		curLocation.setLatitude(36.160642);
-		curLocation.setLongitude(-80.305375);
-	*/
+		
+		
 		for(String key : Greenway.greenways.keySet()) {
 
 			String[] accessLocation = Greenway.greenways.get(key).getLocation();
@@ -102,7 +95,7 @@ public class GreenwayListActivity extends ListActivity{
 			double latitudeValue = Double.parseDouble(accessLocation[1]); //converting string latitude value to double
 			double longitudeValue = Double.parseDouble(accessLocation[0]); //converting string longitude value to double
 
-			double distanceDouble = getDistance(latitudeValue, longitudeValue, curLocation.getLatitude(), curLocation.getLongitude());
+			double distanceDouble = getDistance(latitudeValue, longitudeValue, FrontLine.curLocation.getLatitude(), FrontLine.curLocation.getLongitude());
 
 			DecimalFormat df = new DecimalFormat("##.##");
 			Double distanceInMiles = distanceDouble*0.000621371;
@@ -127,56 +120,7 @@ public class GreenwayListActivity extends ListActivity{
 		});
 	}
 		
-	/**
-	 * To fetch the current location of the user
-	 * @return The location object
-	 */
-
-	private Location getCurrentLocation() {
-		locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
-		Criteria criteria = new Criteria();
-		criteria.setAccuracy(Criteria.ACCURACY_FINE);
-		criteria.setAltitudeRequired(false);
-		criteria.setBearingRequired(false);
-		criteria.setCostAllowed(true);
-		criteria.setPowerRequirement(Criteria.POWER_LOW);
-
-		String provider = locationManager.getBestProvider(criteria, true);
-		Location location = locationManager.getLastKnownLocation(provider);
-		LocationListener loclis = new LocationListener() {
-
-			public void onStatusChanged(String provider, int status, Bundle extras) {
-				// TODO Auto-generated method stub
-
-			}
-
-			public void onProviderEnabled(String provider) {
-				// TODO Auto-generated method stub
-
-			}
-
-			public void onProviderDisabled(String provider) {
-				// TODO Auto-generated method stub
-
-			}
-
-			public void onLocationChanged(Location location) {
-				// TODO Auto-generated method stub
-				updateWithNewLocation(location);
-			}
-		};
-
-		locationManager.requestLocationUpdates(provider, 2000, 10, loclis); 
-		return location;
-	}
-
-	private void updateWithNewLocation(Location location) {
-		// TODO Auto-generated method stub
-		/*double lat = location.getLatitude();
-		double lng = location.getLongitude();*/
-	}
-
+	
 	/**
 	 * Finds distance between two coordinate pairs.
 	 *

@@ -1,48 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/buttonBar"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:background="@drawable/custom_layout"
+    android:orientation="horizontal" >
 
     <ImageButton
         android:id="@+id/home"
-        android:layout_width="75dp"
-        android:layout_height="50dp"
-        android:scaleType="fitXY"
-        android:layout_alignParentBottom="true"
-        
-        android:contentDescription="Button"
-        android:src="@drawable/home" />
-
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/custom_button"
+        android:contentDescription="Home"
+        android:paddingLeft="2dip"
+        android:paddingRight="2dip"
+        android:scaleType="fitXY" >
+   
+   </ImageButton>
+
+    <LinearLayout
+        android:id="@+id/space1"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1" >
+    </LinearLayout>
+
     <ImageButton
         android:id="@+id/map"
-        android:layout_width="75dp"
-        android:layout_height="50dp"
-        android:scaleType="fitXY"
-        
-        android:layout_toRightOf="@+id/home"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/custom_button"
         android:contentDescription="Map"
-        android:layout_alignParentBottom="true" 
-        android:src="@drawable/map" />
+        android:paddingLeft="2dip"
+        android:paddingRight="2dip"
+        android:scaleType="fitXY" />
+
+    <LinearLayout
+        android:id="@+id/space2"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1" >
+    </LinearLayout>
 
     <ImageButton
         android:id="@+id/weather"
-        android:layout_width="75dp"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/map"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/custom_button"
         android:contentDescription="Weather"
-        android:scaleType="fitXY"
-        android:src="@drawable/weather" />
-    
+        android:paddingLeft="2dip"
+        android:paddingRight="2dip"
+        android:scaleType="fitXY" />
+
+    <LinearLayout
+        android:id="@+id/space3"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1" >
+    </LinearLayout>
+
     <ImageButton
         android:id="@+id/citilink"
-        android:layout_width="75dp"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/weather"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/custom_button"
         android:contentDescription="CitiLink"
-        android:scaleType="fitXY"
-        android:src="@drawable/citylink" />
-    
+        android:paddingLeft="2dip"
+        android:paddingRight="2dip"
+        android:scaleType="fitXY" />
 
-</RelativeLayout>
+</LinearLayout>

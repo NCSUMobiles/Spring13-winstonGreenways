@@ -16,7 +16,7 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/CustomTheme" >
         <activity
             android:name="com.winstonsalem.greenways.FrontLine"
             android:label="@string/app_name" >
@@ -36,6 +36,8 @@
         <activity android:name=".GreenwayMap" />
         <activity android:name=".Greenway_Description" />
 		<activity android:name=".CityLink" />
+		<activity android:name=".Header" />
+		<activity android:name=".NetworkError" />
         </application>
 
 </manifest>
