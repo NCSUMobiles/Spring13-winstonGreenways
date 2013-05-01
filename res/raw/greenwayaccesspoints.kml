@@ -263,7 +263,7 @@
     </IconStyle>
   </Style>
   <Placemark>
-  	<Greenway>Salem Lake trail</Greenway>
+  	<Greenway>Salem Lake Trail</Greenway>
     <name>Linville 2</name>
     <description>7 miles unpaved around Salem Lake. Bikes allowed. (Trail users please sign in at Fishing Station)</description>
     <styleUrl>#style18</styleUrl>
@@ -272,7 +272,7 @@
     </Point>
   </Placemark>
   <Placemark>
-	<Greenway>Salem Lake trail</Greenway>
+	<Greenway>Salem Lake Trail</Greenway>
     <name>Linville 1</name>
     <description>7 miles unpaved around Salem Lake. Bikes allowed. (Trail users please sign in at Fishing Station)</description>
     <styleUrl>#style37</styleUrl>
@@ -281,7 +281,7 @@
     </Point>
   </Placemark>
   <Placemark>
-  	<Greenway>Salem Lake trail</Greenway>
+  	<Greenway>Salem Lake Trail</Greenway>
     <name>New GSO Road</name>
     <description>7 miles unpaved around Salem Lake. Bikes allowed. (Trail users please sign in at Fishing Station)</description>
     <styleUrl>#style11</styleUrl>
@@ -290,7 +290,7 @@
     </Point>
   </Placemark>
   <Placemark>
-  	<Greenway>Salem Lake trail</Greenway>
+  	<Greenway>Salem Lake Trail</Greenway>
     <name>Salem Lake Road</name>
     <description>7 miles unpaved around Salem Lake. Bikes allowed. (Trail users please sign in at Fishing Station)</description>
     <styleUrl>#style15</styleUrl>
@@ -299,7 +299,7 @@
     </Point>
   </Placemark>
   <Placemark>
-  	<Greenway>Salem Lake trail</Greenway>
+  	<Greenway>Salem Lake Trail</Greenway>
     <name>Reynolds Park Road</name>
     <description>7 miles unpaved around Salem Lake. Bikes allowed. (Trail users please sign in at Fishing Station)</description>
     <styleUrl>#style34</styleUrl>
@@ -479,7 +479,7 @@
     </Point>
   </Placemark>
   <Placemark>
-  	<Greenway>Brushy Fork Creek Trail</Greenway>
+  	<Greenway>Brushy Fork Creek Trail and Virginia</Greenway>
     <name>Old GSO Rd</name>
     <description>.4 mile path along Brushy Fork Creek connecting south to Newell/Massey Greenway. Begins at Skyland Park at Old Greensboro Road, and ends at Lowery Street. Will connect in the future to Salem Creek Greenway.</description>
     <styleUrl>#style36</styleUrl>
@@ -488,7 +488,7 @@
     </Point>
   </Placemark>
   <Placemark>
-  	<Greenway>Virginia K. Newell Trail</Greenway>
+  	<Greenway>Virginia K. Newell/Ann Massey Trail</Greenway>
     <name>Waterworks Rd</name>
     <description>1.2 miles paved along Brushy Fork from Waterworks Road to Old Greensboro Road. Bikes and skates allowed.</description>
     <styleUrl>#style5</styleUrl>
@@ -497,7 +497,7 @@
     </Point>
   </Placemark>
   <Placemark>
-  	<Greenway>Bowen Branch trail</Greenway>
+  	<Greenway>Bowen Branch Trail</Greenway>
     <name>New Walkertown Rd</name>
     <description>.3 miles paved along Brushy Fork Creek from Bowen Boulevard to Highway 311/New Walkertown Road. Bikes and skates allowed.</description>
     <styleUrl>#style27</styleUrl>
@@ -506,7 +506,7 @@
     </Point>
   </Placemark>
   <Placemark>
-  	<Greenway>Bowen Branch trail</Greenway>
+  	<Greenway>Bowen Branch Trail</Greenway>
     <name>Bowen Blvd</name>
     <description>.3 miles paved along Brushy Fork Creek from Bowen Boulevard to Highway 311/New Walkertown Road. Bikes and skates allowed.</description>
     <styleUrl>#style22</styleUrl>
@@ -515,7 +515,7 @@
     </Point>
   </Placemark>
   <Placemark>
-  	<Greenway>Silas creek trail</Greenway>
+  	<Greenway>Silas creek Trail</Greenway>
     <name>Yorkshire Rd</name>
     <description>.8 mile paved and unpaved along Silas Creek from Yorkshire to Robinhood roads. Bikes and skates allowed</description>
     <styleUrl>#style12</styleUrl>
@@ -524,7 +524,7 @@
     </Point>
   </Placemark>
   <Placemark>
-  	<Greenway>Silas creek trail</Greenway>
+  	<Greenway>Silas creek Trail</Greenway>
     <name>Burkeshore Rd</name>
     <description>.8 mile paved and unpaved along Silas Creek from Yorkshire to Robinhood roads. Bikes and skates allowed</description>
     <styleUrl>#style2</styleUrl>
@@ -533,7 +533,7 @@
     </Point>
   </Placemark>
   <Placemark>
-  	<Greenway>Silas creek trail</Greenway>
+  	<Greenway>Silas creek Trail</Greenway>
     <name>Robinhood Rd</name>
     <description>.8 mile paved and unpaved along Silas Creek from Yorkshire to Robinhood roads. Bikes and skates allowed</description>
     <styleUrl>#style4</styleUrl>
