@@ -9,6 +9,6 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" 
             android:layout_marginTop="5dip"
-            android:background="@drawable/custom_background"/>
+            android:background="@drawable/preview15"/>
 
     </LinearLayout>

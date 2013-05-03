@@ -134,9 +134,9 @@ containing a value of this type.
         public static final int button_dirnormal=0x7f020002;
         public static final int button_dirpressed=0x7f020003;
         public static final int citylink=0x7f020004;
-        public static final int color_one=0x7f020013;
-        public static final int color_three=0x7f020015;
-        public static final int color_two=0x7f020014;
+        public static final int color_one=0x7f020014;
+        public static final int color_three=0x7f020016;
+        public static final int color_two=0x7f020015;
         public static final int custom_background=0x7f020005;
         public static final int custom_button=0x7f020006;
         public static final int custom_layout=0x7f020007;
@@ -147,10 +147,11 @@ containing a value of this type.
         public static final int locationmarker=0x7f02000c;
         public static final int mylocation=0x7f02000d;
         public static final int parkingmarker=0x7f02000e;
-        public static final int seeclickfix=0x7f02000f;
-        public static final int transparent_map=0x7f020010;
-        public static final int transparent_weather=0x7f020011;
-        public static final int waytogologo=0x7f020012;
+        public static final int preview15=0x7f02000f;
+        public static final int seeclickfix=0x7f020010;
+        public static final int transparent_map=0x7f020011;
+        public static final int transparent_weather=0x7f020012;
+        public static final int waytogologo=0x7f020013;
     }
     public static final class id {
         public static final int ButtonFragment=0x7f050010;

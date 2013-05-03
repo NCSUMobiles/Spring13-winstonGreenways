@@ -43,7 +43,7 @@ public class GreenwayListFragment extends ListFragment {
 
 	// flag for network status
 	boolean isNetworkEnabled = false;
-	
+
 	// flag for GPS status
 	boolean canGetLocation = false;
 
@@ -129,16 +129,20 @@ public class GreenwayListFragment extends ListFragment {
 				connection.setDoOutput(true);
 				connection.setDoInput(true);
 				connection.connect();
-				io = connection.getInputStream();
+
+				while (io == null){
+					io = connection.getInputStream();
+				}
 
 				final String result = convertStreamToString(io);
 
 				ArrayList<String> distanceInMiles = new ArrayList<String>();
 				try {
 					JSONObject jsonObject = new JSONObject(result);
+					System.out.println(result);
 
 					JSONArray rows = jsonObject.getJSONArray("rows");
-					//Log.i("json", rows.toString());
+					Log.i("json", rows.toString());
 
 					JSONArray elements = rows.getJSONObject(0).getJSONArray("elements");
 					DecimalFormat df = new DecimalFormat("##0.00");
@@ -183,7 +187,9 @@ public class GreenwayListFragment extends ListFragment {
 				public int compare(HashMap<String, String> lhs,
 						HashMap<String, String> rhs) {
 					// TODO Auto-generated method stub
-					return lhs.get("distance").compareTo(rhs.get("distance"));
+					Double i1 = Double.parseDouble(lhs.get("distance").split(" ")[0]);
+					Double i2 = Double.parseDouble(rhs.get("distance").split(" ")[0]);
+					return (i1<i2 ? -1 : (i1==i2 ? 0 : 1));
 				}
 			});
 			locationManager.removeUpdates(loclis);
@@ -202,6 +208,7 @@ public class GreenwayListFragment extends ListFragment {
 			setListAdapter(adapter);
 
 			ListView listView = getListView();
+			listView.setCacheColorHint(0);
 			listView.setOnItemClickListener(new OnItemClickListener() {
 
 				public void onItemClick(AdapterView<?> l, View v, int position, long id) {
@@ -211,7 +218,6 @@ public class GreenwayListFragment extends ListFragment {
 					@SuppressWarnings("unchecked")
 					HashMap<String, String> item = (HashMap<String, String>) l.getItemAtPosition(position);
 					intent.putExtra("str", item.get("accessPointName"));
-					System.out.println(item.get("accessPointName"));
 					startActivity(intent);
 				}
 			});
@@ -247,72 +253,67 @@ public class GreenwayListFragment extends ListFragment {
 	}
 
 	/**
-	 * To fetch the current location of the user
-	 * @return The location object
-	 */
-
-	/**
 	 * Function to get the user's current location
 	 * @return
 	 */
 	public Location getCurrentLocation() {
-	    Location location = null;
+		Location location = null;
 		try {
-	        locationManager = (LocationManager)this.getActivity().getSystemService(Context.LOCATION_SERVICE);
+			locationManager = (LocationManager)this.getActivity().getSystemService(Context.LOCATION_SERVICE);
 
-	        // getting GPS status
-	        isGPSEnabled = locationManager
-	                .isProviderEnabled(LocationManager.GPS_PROVIDER);
+			// getting GPS status
+			isGPSEnabled = locationManager
+					.isProviderEnabled(LocationManager.GPS_PROVIDER);
 
-	        Log.v("isGPSEnabled", "=" + isGPSEnabled);
+			Log.v("isGPSEnabled", "=" + isGPSEnabled);
 
-	        // getting network status
-	        isNetworkEnabled = locationManager
-	                .isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+			// getting network status
+			isNetworkEnabled = locationManager
+					.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 
-	        Log.v("isNetworkEnabled", "=" + isNetworkEnabled);
+			Log.v("isNetworkEnabled", "=" + isNetworkEnabled);
 
-	        if (isGPSEnabled == false && isNetworkEnabled == false) {
-	            // no network provider is enabled
-	        } else {
-	            this.canGetLocation = true;
-	            if (isNetworkEnabled) {
-	                locationManager.requestLocationUpdates(
-	                        LocationManager.NETWORK_PROVIDER,
-	                        10, 1000*60*1, loclis);
-	                Log.d("Network", "Network");
-	                if (locationManager != null) {
-	                    location = locationManager
-	                            .getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-	                    /*if (location != null) {
+			if (isGPSEnabled == false && isNetworkEnabled == false) {
+				// no network provider is enabled
+			} else {
+				this.canGetLocation = true;
+				if (isNetworkEnabled) {
+					locationManager.requestLocationUpdates(
+							LocationManager.NETWORK_PROVIDER,
+							10, 1000*60*1, loclis);
+					Log.d("Network", "Network");
+					if (locationManager != null) {
+						location = locationManager
+								.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+						/*if (location != null) {
 	                        latitude = location.getLatitude();
 	                        longitude = location.getLongitude();
 	                    }*/
-	                }
-	            }
-	            // if GPS Enabled get lat/long using GPS Services
-	            if (isGPSEnabled) {
-	                if (location == null) {
-	                    locationManager.requestLocationUpdates(
-	                            LocationManager.GPS_PROVIDER,
-	                            10, 1000*60*1, loclis);
-	                    Log.d("GPS Enabled", "GPS Enabled");
-	                    if (locationManager != null) {
-	                        location = locationManager
-	                                .getLastKnownLocation(LocationManager.GPS_PROVIDER);
-	                        /*if (location != null) {
+					}
+				}
+				// if GPS Enabled get lat/long using GPS Services
+				if (isGPSEnabled) {
+					if (location == null) {
+						locationManager.requestLocationUpdates(
+								LocationManager.GPS_PROVIDER,
+								10, 1000*60*1, loclis);
+						Log.d("GPS Enabled", "GPS Enabled");
+						if (locationManager != null) {
+							location = locationManager
+									.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+							/*if (location != null) {
 	                            latitude = location.getLatitude();
 	                            longitude = location.getLongitude();
 	                        }*/
-	                    }
-	                }
-	            }
-	        }
+						}
+					}
+				}
+			}
 
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-	    return location;
+		return location;
 	}
 }

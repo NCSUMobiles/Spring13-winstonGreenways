@@ -21,6 +21,9 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v4.app.Fragment;
@@ -29,27 +32,32 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 
+@SuppressLint("NewApi")
 public class WeatherFragment extends Fragment{
 
 	//private Dialog webViewDialog;
 	private WebView webView;
 
 	static String imageUrl=new String();
-	
-	@SuppressLint("SetJavaScriptEnabled")
+
+	@TargetApi(Build.VERSION_CODES.GINGERBREAD)
+	@SuppressLint({ "SetJavaScriptEnabled", "NewApi" })
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 		StrictMode.setThreadPolicy(policy); 
 
 		View view = inflater.inflate(R.layout.webviewdialog, container, false);
-		
+
 		webView = (WebView)view.findViewById(R.id.wb_webview);
+		//webView.setBackgroundResource(R.drawable.preview15);
 		webView.getSettings().setJavaScriptEnabled(true);
 		String weatherString = QueryYahooWeather();
 		Document weatherDoc = convertStringToDocument(weatherString);
 		String weatherResult = parseWeatherDescription(weatherDoc);
 		webView.loadData(weatherResult, "text/html", "UTF-8");
+		webView.setBackgroundColor(Color.TRANSPARENT);
+		webView.clearView();
 
 		return view;
 	}

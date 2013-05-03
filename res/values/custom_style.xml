@@ -2,12 +2,12 @@
 
     <style name="CustomWindowTitleBackground">
         <item name="android:background">@drawable/custom_background</item>
-        
     </style>
 
     <style name="CustomTheme" parent="android:Theme.Light">
         <item name="android:windowTitleSize">50dip</item>
         <item name="android:windowTitleBackgroundStyle">@style/CustomWindowTitleBackground</item>
+        <item name="android:windowBackground">@drawable/preview15</item>
     </style>
 
 </resources>
